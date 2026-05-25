@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/Thao Anh/OneDrive/Desktop/onboarding_testcase\")",
+      "Read(//c/Users/Thao Anh/OneDrive/Desktop/**)",
+      "PowerShell($path = \"C:\\\\Users\\\\Thao Anh\\\\OneDrive\\\\Desktop\\\\onboarding_testcase\\\\testcases_vn.csv\"; $content = [System.IO.File]::ReadAllText\\($path, [System.Text.UTF8Encoding]::new\\($false\\)\\); [System.IO.File]::WriteAllText\\($path, $content, \\(New-Object System.Text.UTF8Encoding $true\\)\\); $bytes = [System.IO.File]::ReadAllBytes\\($path\\); \"BOM check: $\\($bytes[0].ToString\\('X'\\)\\) $\\($bytes[1].ToString\\('X'\\)\\) $\\($bytes[2].ToString\\('X'\\)\\)\")",
+      "PowerShell($md = \"C:\\\\Users\\\\Thao Anh\\\\OneDrive\\\\Desktop\\\\onboarding_testcase\\\\testcases.md\"; $content = [System.IO.File]::ReadAllText\\($md, [System.Text.UTF8Encoding]::new\\($false\\)\\); [System.IO.File]::WriteAllText\\($md, $content, \\(New-Object System.Text.UTF8Encoding $true\\)\\); Get-ChildItem \"C:\\\\Users\\\\Thao Anh\\\\OneDrive\\\\Desktop\\\\onboarding_testcase\\\\\" | Select-Object Name, Length, LastWriteTime)",
+      "Bash(python *)",
+      "PowerShell(& \"C:\\\\Users\\\\Thao Anh\\\\AppData\\\\Local\\\\Temp\\\\build_en_xlsx.ps1\")"
+    ]
+  }
+}
