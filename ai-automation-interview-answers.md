@@ -516,11 +516,17 @@ test('tạo đơn hàng', async ({ page }) => {
 > **Cách em cho là đúng** và đang muốn làm: mỗi known issue phải có **ba thứ** — link bug ticket, lý do, và **ngày dự kiến fix**. Ghi ngay trong code chứ không ghi ngoài:
 
 ```typescript
-test.fixme('CF_14 [P0] Disconnect FB -> GMC button chuyển disabled',
-  'BUG-123: API trả trạng thái sai, dev đang fix, dự kiến 20/10');
+test.fail('CF_14 [P0] Disconnect FB -> GMC button chuyển disabled', {
+  annotation: { type: 'known-issue', description: 'BUG-123 — dev đang fix, dự kiến 20/10' },
+}, async ({ page }) => { /* ... */ });
 ```
 
-> Dùng `test.fixme` thay vì `skip` khi đó là bug đã biết của sản phẩm — nó nói đúng ý 'cái này đang lỗi', khác với 'cái này tạm chưa chạy'.
+> **Dùng `test.fail`, không dùng `skip` hay `fixme`** — và đây là chỗ đáng kể trong phỏng vấn:
+> `skip`/`fixme` thì test **không chạy**, nên mình mất coverage và **không biết lúc nào dev fix xong**.
+> `test.fail` thì test **vẫn chạy và phải fail**. Nó được tính là 'đã biết' nên report không đỏ vì nó.
+> Nhưng khi dev fix xong, test pass — và Playwright báo **đỏ** với thông báo `Expected to fail, but passed.`
+> Tức là bộ test **tự nhắc** mình gỡ nhãn known-issue, known issue không thể bị bỏ quên vĩnh viễn.
+> Em cũng kiểm là nó không làm dừng cả file dù bộ của em chạy `mode: 'serial'`.
 > Và **review định kỳ** `[mỗi tuần khi họp sprint]`. Lý do em cho là quan trọng: known issue để lâu thì cả team quen với màu đỏ, rồi một hôm có fail thật không ai để ý. Nó biến report từ công cụ ra quyết định thành tiếng ồn.
 > `[Trả lời thật câu "nó tồn tại bao lâu rồi" — và nếu đã lâu, nói luôn: "cái này treo [X tuần] rồi, đó là một trong những thứ em thấy quy trình của em còn dở."]`"
 
