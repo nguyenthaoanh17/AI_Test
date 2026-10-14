@@ -204,10 +204,15 @@ function main() {
   fs.writeFileSync(file, L.join('\n') + '\n', 'utf8');
   fs.writeFileSync(path.join(OUT_DIR, 'latest.md'), L.join('\n') + '\n', 'utf8');
 
-  // stdout: dòng 1 = verdict, dòng 2 = số liệu, dòng 3 = đường dẫn (test-notify.sh đọc)
+  // stdout cho test-notify.sh đọc:
+  //   dòng 1 = verdict, dòng 2 = số liệu, dòng 3 = đường dẫn report, dòng 4 = thời điểm
+  const p2 = (n) => String(n).padStart(2, '0');
+  const when = `${p2(started.getDate())}/${p2(started.getMonth() + 1)}/${started.getFullYear()}` +
+    ` - ${p2(started.getHours())}:${p2(started.getMinutes())}`;
   console.log(verdict);
   console.log(counts);
   console.log(path.relative(ROOT, file));
+  console.log(when);
 }
 
 main();

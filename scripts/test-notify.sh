@@ -32,13 +32,16 @@ REPORT_OUT=$(node scripts/make-report.js 2>/dev/null)
 VERDICT=$(printf '%s\n' "$REPORT_OUT" | sed -n '1p')
 COUNTS=$(printf '%s\n' "$REPORT_OUT" | sed -n '2p')
 REPORT_FILE=$(printf '%s\n' "$REPORT_OUT" | sed -n '3p')
+WHEN=$(printf '%s\n' "$REPORT_OUT" | sed -n '4p')
 
 if [ -n "$VERDICT" ]; then
-  SUMMARY="$COUNTS"
+  [ -z "$WHEN" ] && WHEN=$(date '+%d/%m/%Y - %H:%M')
+  TITLE="Quick regression test - $WHEN"
+  SUMMARY="$VERDICT · $COUNTS"
   case "$VERDICT" in
-    "KHÔNG ĐẠT") TITLE="❌ Regression: KHÔNG ĐẠT"; URGENCY=2; ICON=dialog-error ;;
-    *"lỗi đã biết"*) TITLE="⚠️ Regression: $VERDICT"; URGENCY=1; ICON=dialog-warning ;;
-    *)            TITLE="✅ Regression: ĐẠT";      URGENCY=1; ICON=dialog-information ;;
+    "KHÔNG ĐẠT")     URGENCY=2; ICON=dialog-error ;;
+    *"lỗi đã biết"*) URGENCY=1; ICON=dialog-warning ;;
+    *)               URGENCY=1; ICON=dialog-information ;;
   esac
   [ -n "$REPORT_FILE" ] && echo "→ report: $REPORT_FILE"
 else
@@ -47,10 +50,11 @@ else
     | grep -oE '^[[:space:]]*[0-9]+ (passed|failed|flaky|skipped|interrupted|did not run)[^$]*' \
     | sed 's/^[[:space:]]*//' | paste -sd'|' - | sed 's/|/ · /g')
   [ -z "$SUMMARY" ] && SUMMARY="Không đọc được kết quả — mở report để xem."
+  TITLE="Quick regression test - $(date '+%d/%m/%Y - %H:%M')"
   if [ "$CODE" -eq 0 ]; then
-    TITLE="✅ Playwright: ĐẠT"; URGENCY=1; ICON=dialog-information
+    SUMMARY="ĐẠT · $SUMMARY"; URGENCY=1; ICON=dialog-information
   else
-    TITLE="❌ Playwright: KHÔNG ĐẠT"; URGENCY=2; ICON=dialog-error
+    SUMMARY="KHÔNG ĐẠT · $SUMMARY"; URGENCY=2; ICON=dialog-error
   fi
 fi
 
