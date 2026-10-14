@@ -14,6 +14,11 @@ export default async function globalTeardown() {
   }
   if (!pid) return;
   await new Promise<void>((resolve) => {
-    execFile('taskkill', ['/F', '/T', '/PID', pid], () => resolve());
+    if (process.platform === 'win32') {
+      execFile('taskkill', ['/F', '/T', '/PID', pid], () => resolve());
+    } else {
+      try { process.kill(-Number(pid), 'SIGKILL'); } catch (_) {}
+      resolve();
+    }
   });
 }

@@ -27,6 +27,12 @@ const CHROME_CANDIDATES = [
   process.env.LOCALAPPDATA
     ? path.join(process.env.LOCALAPPDATA, 'Google\\Chrome\\Application\\chrome.exe')
     : null,
+  '/usr/bin/google-chrome',
+  '/usr/bin/google-chrome-stable',
+  '/usr/bin/chromium',
+  '/usr/bin/chromium-browser',
+  '/snap/bin/chromium',
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 ].filter(Boolean);
 
 function findChrome() {
@@ -64,7 +70,12 @@ function waitForPort(port, timeoutMs) {
 function killChromeTree(pid) {
   if (!pid) return;
   try {
-    execFile('taskkill', ['/F', '/T', '/PID', String(pid)], () => {});
+    if (process.platform === 'win32') {
+      execFile('taskkill', ['/F', '/T', '/PID', String(pid)], () => {});
+    } else {
+      try { process.kill(-Number(pid), 'SIGKILL'); } catch (_) {}
+      
+    }
   } catch (_) {
     // ignore
   }

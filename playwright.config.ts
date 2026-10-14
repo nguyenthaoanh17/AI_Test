@@ -10,6 +10,8 @@ export default defineConfig({
   // CDP attach chỉ có 1 persistent context -> chạy 1 worker để tránh xung đột.
   workers: 1,
   fullyParallel: false,
+  // HTML report: test fail có kèm screenshot + trace (mở bằng: npx playwright show-report)
+  reporter: [['list'], ['html', { open: 'never' }]],
   projects: [
     {
       name: 'setup',
