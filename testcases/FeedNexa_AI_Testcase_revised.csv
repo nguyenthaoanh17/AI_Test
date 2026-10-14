@@ -1,13 +1,13 @@
-﻿,,,,KỊCH BẢN KIỂM THỬ *,,,,,,,,,,,,,,,,
-,,,,Tên màn hình/Tên chức năng,Install app + Create feed (Facebook + GMC),,,,,,,,,,,,,,,
-,,,,Mã trường hợp kiểm thử,IA / CF / CG,,,,,,,,,,,,,,,
-,,,,Số trường hợp kiểm thử đạt (P),0,,,,,,,,,,,,,,,
-,,,,Số trường hợp kiểm thử không đạt (F),0,,,,,,,,,,,,,,,
-,,,,Số trường hợp kiểm thử đang xem xét (PE),0,,,,,,,,,,,,,,,
-,,,,Số trường hợp kiểm thử chưa thực hiện,53,,,,,,,,,,,,,,,
-,,,,Tổng số trường hợp kiểm thử,53,,,,,,,,,,,,,,,
-Mã trường hợp kiểm thử,Mục đích kiểm thử,Pre-condition,Sub-object,Các bước thực hiện,Kết quả mong muốn,Chrome,,,Edge,,,Firefox,,,Mobile,,,Kết quả hiện tại,Mã lỗi,Ghi chú
-,,,,,,Lần 1,Lần 2,Lần 3,Lần 1,Lần 2,Lần 3,Lần 1,Lần 2,Lần 3,Lần 1,Lần 2,Lần 3,,,
+﻿,,,,KỊCH BẢN KIỂM THỬ *,,,,,,,,,,,,,,,,,
+,,,,Tên màn hình/Tên chức năng,Install app + Create feed (Facebook + GMC),,,,,,,,,,,,,,,,
+,,,,Mã trường hợp kiểm thử,IA / CF / CG,,,,,,,,,,,,,,,,
+,,,,Số trường hợp kiểm thử đạt (P),0,,,,,,,,,,,,,,,,
+,,,,Số trường hợp kiểm thử không đạt (F),0,,,,,,,,,,,,,,,,
+,,,,Số trường hợp kiểm thử đang xem xét (PE),0,,,,,,,,,,,,,,,,
+,,,,Số trường hợp kiểm thử chưa thực hiện,53,,,,,,,,,,,,,,,,
+,,,,Tổng số trường hợp kiểm thử,53,,,,,,,,,,,,,,,,
+Mã trường hợp kiểm thử,Mục đích kiểm thử,Pre-condition,Sub-object,Các bước thực hiện,Kết quả mong muốn,Chrome,,,Edge,,,Firefox,,,Mobile,,,Kết quả hiện tại,Mã lỗi,Ghi chú,Known issue
+,,,,,,Lần 1,Lần 2,Lần 3,Lần 1,Lần 2,Lần 3,Lần 1,Lần 2,Lần 3,Lần 1,Lần 2,Lần 3,,,,
 IA_00,[P0] Pre-setup: Nếu app đã cài sẵn thì uninstall + đợi 30s + reinstall (always run để fresh state),User đã login Shopify admin của store dev-feed11,Module: Install app,"1. Mở https://admin.shopify.com/store/dev-feed11/settings/apps?tab=installed
 2. Kiểm tra app ""Omega Feed"" có trong list Installed apps hay không
 3. NẾU CÓ:
@@ -25,7 +25,7 @@ LƯU Ý: Shopify đôi khi throttle install ngay sau uninstall - helper ensureFr
   + Ở tab Uninstalled tìm thấy app ""Omega Google & Facebook Feed"" / ""Omega Feed""
   + Sau khi click Install và xác nhận permissions, app được cài lại và xuất hiện trong tab Installed
   + Truy cập URL app = https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega không còn landing ""You don't have this app installed""
-  + Không còn button aria-label=""Install app"" trên trang app",,,,,,,,,,,,,,,
+  + Không còn button aria-label=""Install app"" trên trang app",,,,,,,,,,,,,,,,
 IA_01,[P0] Xác nhận session hợp lệ và app load thành công sau IA_00,"- IA_00 passed (app vừa install/reinstall xong)
 - Store có ít nhất 1 product activated",Module: Install app,"1. Mở https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega
 2. Đợi app UI load hoàn tất (iframe apps.feednexa.com cần ~15-20s)
@@ -33,7 +33,7 @@ IA_01,[P0] Xác nhận session hợp lệ và app load thành công sau IA_00,"-
 4. Mở https://admin.shopify.com/store/dev-feed11/settings/apps?tab=installed để đối chiếu","- URL app = https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega (không redirect về landing ""You don't have this app installed"")
 - Heading H1 ""Omega Feed"" hiển thị ở Shopify shell
 - App UI load hoàn tất, không có lỗi console / không có request fail (status 4xx/5xx)
-- App ""Omega Feed"" hiển thị trong danh sách Installed apps",,,,,,,,,,,,,,,
+- App ""Omega Feed"" hiển thị trong danh sách Installed apps",,,,,,,,,,,,,,,,
 IA_02,[P0] Popup onboard hiển thị sau khi install lần đầu,"- IA_01 passed
 - Store/user CHƯA TỪNG đóng popup onboard trước đó
 - RÀNG BUỘC QUAN TRỌNG: flag onboard lưu ở backend theo user Shopify, uninstall+reinstall KHÔNG reset flag. Nếu popup đã từng bị đóng ở lần cài trước thì case này chỉ verify được trên store mới hoặc sau khi reset flag qua API.",Module: Install app,"1. Sau khi IA_01 pass, đứng tại màn app vừa load (iframe apps.feednexa.com)
@@ -41,40 +41,40 @@ IA_02,[P0] Popup onboard hiển thị sau khi install lần đầu,"- IA_01 pass
 - Tiêu đề popup: ""Get your product feeds ready!""
 - Có 6 widget chọn nền tảng: Facebook catalog / Google - GMC / XML Feed / Microsoft (Active) + TikTok / Pinterest (Coming soon)
 - Có button CTA ""Continue"" (disabled cho đến khi chọn 1 widget)
-- Có option đóng (nút X góc trên phải)",,,,,,,,,,,,,,,
-IA_03,[P0] Plan mặc định là Free hiển thị ở Dashboard,IA_01 passed,Module: Install app,1. Vào màn Dashboard của app,"Hiển thị label plan hiện tại = ""Free""",,,,,,,,,,,,,,,
+- Có option đóng (nút X góc trên phải)",,,,,,,,,,,,,,,,
+IA_03,[P0] Plan mặc định là Free hiển thị ở Dashboard,IA_01 passed,Module: Install app,1. Vào màn Dashboard của app,"Hiển thị label plan hiện tại = ""Free""",,,,,,,,,,,,,,,,
 IA_04,[P0] Plan mặc định là Free hiển thị ở màn Pricing,IA_01 passed,Module: Install app,1. Vào màn Pricing của app (URL chứa /pricing-v3),"- Plan ""Free"" được đánh dấu là current plan (highlight / badge ""Current"")
-- Text ""Your current plan"" hiển thị",,,,,,,,,,,,,,,
+- Text ""Your current plan"" hiển thị",,,,,,,,,,,,,,,,
 IA_05,"[P0] Home: số ""products imported"" khi store có >=100 product activated","- IA_01 passed
-- Store có >= 100 product activated",Module: Install app,1. Vào màn Home của app,"- Giá trị ""products imported to Omega Feed"" = 100",,,,,,,,,,,,,,,
+- Store có >= 100 product activated",Module: Install app,1. Vào màn Home của app,"- Giá trị ""products imported to Omega Feed"" = 100",,,,,,,,,,,,,,,,
 IA_06,"[P1] Home: số ""products imported"" khi store có <100 product activated","- IA_01 passed
-- Store có N product activated (1 <= N < 100)",Module: Install app,1. Vào màn Home của app,"- Giá trị ""products imported to Omega Feed"" = N (toàn bộ product đang active)",,,,,,,,,,,,,,,
+- Store có N product activated (1 <= N < 100)",Module: Install app,1. Vào màn Home của app,"- Giá trị ""products imported to Omega Feed"" = N (toàn bộ product đang active)",,,,,,,,,,,,,,,,
 IA_07,[P2] Home: empty state khi store có 0 product activated,"- IA_01 passed
 - store không có product activated",Module: Install app,1. Vào màn Home của app,"- Giá trị ""products imported to Omega Feed"" = 0
-- Hiển thị empty state message phù hợp (không crash, không spinner vĩnh viễn)",,,,,,,,,,,,,,,
+- Hiển thị empty state message phù hợp (không crash, không spinner vĩnh viễn)",,,,,,,,,,,,,,,,
 IA_08,[P0] Màn Products: số sản phẩm khớp Home khi store >=100 product,IA_05 passed,Module: Install app,"1. Vào màn Products của app
 2. Đếm số sản phẩm trong list (qua pagination hoặc badge tổng)","- Số sản phẩm = 100
-- Khớp với giá trị ""products imported"" ở màn Home",,,,,,,,,,,,,,,
+- Khớp với giá trị ""products imported"" ở màn Home",,,,,,,,,,,,,,,,
 IA_09,[P1] Màn Products: số sản phẩm khớp Home khi store <100 product,IA_06 passed,Module: Install app,"1. Vào màn Products của app
-2. Đếm số sản phẩm trong list",Số sản phẩm = N (Khớp Giá trị ở Home),,,,,,,,,,,,,,,
+2. Đếm số sản phẩm trong list",Số sản phẩm = N (Khớp Giá trị ở Home),,,,,,,,,,,,,,,,
 IA_10,[P0] Uninstall app thành công,"- App ""Omega Feed"" đang được cài trên store",Module: Install app,"1. Mở https://admin.shopify.com/store/dev-feed11/settings/apps?tab=installed
 2. Click menu 3 chấm của app ""Omega Feed""
 3. Click ""Uninstall""
 4. Confirm dialog uninstall","- App biến mất khỏi list Installed apps
 - Hiển thị toast / notification xác nhận uninstall thành công
-- Khi truy cập lại URL app thì không còn quyền (bị redirect về apps list)",,,,,,,,,,,,,,,
+- Khi truy cập lại URL app thì không còn quyền (bị redirect về apps list)",,,,,,,,,,,,,,,,
 IA_11,[P1] Reinstall sau 30s vẫn hoạt động bình thường,"- IA_10 passed
 - Đã đợi >=30s sau khi uninstall",Module: Install app,"1. Reinstall app (lặp lại steps IA_00 nhánh 3.4-3.5)
 2. Mở app","- App load thành công
 - URL = https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega
-- Không có lỗi cấp tài khoản / quyền",,,,,,,,,,,,,,,
+- Không có lỗi cấp tài khoản / quyền",,,,,,,,,,,,,,,,
 IA_12,[P1] Reinstall: plan revert về Free,"- IA_01 passed
 - Setup thủ công trước IA_10: vào màn Pricing, upgrade lên plan Paid bất kỳ và approve charge ở Shopify (chưa có testcase auto cho bước này, tester làm tay)
 - Sau đó chạy IA_10 (uninstall) với state plan = Paid",Module: Install app,"1. Reinstall app (lặp lại IA_00 nhánh 3.4-3.5 hoặc IA_01)
 2. Vào màn Dashboard, kiểm tra label plan
 3. Vào màn Pricing, kiểm tra current plan","- Plan = Free ở cả Dashboard và Pricing
 - Không còn badge ""Current"" ở plan Paid trước đó
-- Billing Shopify: charge Paid cũ đã bị cancel (verify tại https://admin.shopify.com/store/dev-feed11/settings/billing/subscriptions)",,,,,,,,,,,,,,,
+- Billing Shopify: charge Paid cũ đã bị cancel (verify tại https://admin.shopify.com/store/dev-feed11/settings/billing/subscriptions)",,,,,,,,,,,,,,,,
 CF_00,[P0] Pre-setup module Create feed Facebook: reset app để popup onboard sẵn sàng,"- User đã login Shopify admin của store dev-feed11
 - Trùng flow IA_00. Khi chạy module create-feed.spec.ts, CF_00 đảm nhiệm fresh install cho cả suite (IA_00 trong install-app.spec.ts được skip để tránh duplicate khi run cả 2 module).
 - CẢNH BÁO: popup onboard chỉ hiện 1 lần/user (flag lưu backend), uninstall+reinstall KHÔNG reset. CF_01 nhánh popup chỉ chạy được nếu store/user chưa từng đóng popup",Module: Create feed (Facebook),"1. Mở https://admin.shopify.com/store/dev-feed11/settings/apps?tab=installed
@@ -83,7 +83,7 @@ CF_00,[P0] Pre-setup module Create feed Facebook: reset app để popup onboard 
 4. Helper ensureFreshInstall() retry 3 lần nếu Shopify throttle install","- App ở trạng thái vừa install
 - URL = https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega
 - Không còn button ""Install app"" / landing ""You don't have this app installed""
-- Popup onboard SẴN SÀNG hiện (chỉ khi user chưa từng đóng trước đó)",,,,,,,,,,,,,,,
+- Popup onboard SẴN SÀNG hiện (chỉ khi user chưa từng đóng trước đó)",,,,,,,,,,,,,,,,
 CF_01,[P0] Popup onboard -> Active Facebook catalog -> Continue -> Connect Facebook account,"- CF_00 passed
 - User đã login sẵn tài khoản Facebook trong Chrome profile (test runner)
 - RULE: cứ install là popup onboard hiện lại (rule project)
@@ -103,7 +103,7 @@ FALLBACK: nếu popup không hiện trong 45s, navigate /sync-to-fb-setting-v2 v
 - Trạng thái cuối (KHÔNG phải màn Create setting - rule project_facebook_reconnect_flow): panel chuyển thành:
   + Avatar + tên FB user + ""Account connected"" + button ""Disconnect""
   + Xuất hiện 2 field required: ""Select business account *"" (dropdown) + ""Catalog name *"" (input), cùng placeholder ""Type name your catalog""
-  + Vẫn đang ở Step 1 of 3, button Next ở dưới disabled cho tới khi fill 2 field",,,,,,,,,,,,,,,
+  + Vẫn đang ở Step 1 of 3, button Next ở dưới disabled cho tới khi fill 2 field",,,,,,,,,,,,,,,,
 CF_02,[P0] Verify UI onboard wizard Step 1 (Connect Facebook account) sau khi connect thành công,"- CF_01 passed
 - User đã connect FB account thành công qua onboard
 - Đang ở màn ""Get ready for Facebook Catalog"" Step 1 of 3
@@ -120,7 +120,7 @@ CF_02,[P0] Verify UI onboard wizard Step 1 (Connect Facebook account) sau khi co
 - ""Step 1 of 3"" indicator hiển thị đúng
 - Panel hiển thị đủ: Avatar/tên FB + ""Account connected"" + button ""Disconnect""
 - 2 field ""Select business account *"" và ""Catalog name *"" visible + required
-- Button Next bị DISABLED (vì 2 field required chưa fill)",,,,,,,,,,,,,,,
+- Button Next bị DISABLED (vì 2 field required chưa fill)",,,,,,,,,,,,,,,,
 CF_03,[P0] Fill Step 1 (Select business account + Catalog name) và Next sang Step 2 General setting,"- CF_02 passed
 - Đang ở onboard wizard Step 1 of 3, FB account đã connect
 - Facebook account có ít nhất 1 Business account
@@ -133,7 +133,7 @@ CF_03,[P0] Fill Step 1 (Select business account + Catalog name) và Next sang St
 4. Click button ""Next""","- Sau khi fill 2 field required, button Next chuyển từ disabled -> enabled
 - Click Next -> app chuyển sang Step 2 ""General setting"" (stepper step 1 có check, step 2 active)
 - ""Step 2 of 3"" indicator visible
-- Không có error validation",,,,,,,,,,,,,,,
+- Không có error validation",,,,,,,,,,,,,,,,
 CF_04a,"[P1] Step 2: Products from collections nhưng chưa chọn collection -> Next -> hiển thị error ""Please select collection""","- CF_03 passed
 - Đang ở Step 2 ""General setting""
 - Default: radio ""All products"" đang được chọn
@@ -145,7 +145,7 @@ CF_04a,"[P1] Step 2: Products from collections nhưng chưa chọn collection ->
 6. Click button ""Next"" ở footer","- Khi switch radio ""Products from collections"", input ""Search collections"" + button Browse xuất hiện
 - Click Next khi chưa chọn collection nào -> KHÔNG sang Step 3
 - Hiển thị error đỏ ""Please select collection"" (kèm icon warning) ngay dưới radio group
-- Vẫn ở Step 2 of 3",,,,,,,,,,,,,,,
+- Vẫn ở Step 2 of 3",,,,,,,,,,,,,,,,
 CF_04b,[P0] Step 2: Products from collections -> Browse popup -> tick checkbox -> Add -> reset All products -> Next sang Step 3,"- CF_04a passed
 - Đang ở Step 2, radio ""Products from collections"" đang active với error ""Please select collection""
 - RULE popup scope page (App Bridge): popup ""Add collections"" render top-level Shopify admin, KHÔNG trong iframe -> query bằng page locator chứ không phải frame
@@ -166,7 +166,7 @@ CF_04b,[P0] Step 2: Products from collections -> Browse popup -> tick checkbox -
 - Tick 1 checkbox -> ""1 collection selected"" + Add enabled
 - Click Add -> popup đóng, error ""Please select collection"" biến mất
 - Reset radio ""All products"" + ""All variants"" giữ default
-- Click Next -> chuyển sang Step 3 ""Complete"" (""Step 3 of 3"" visible)",,,,,,,,,,,,,,,
+- Click Next -> chuyển sang Step 3 ""Complete"" (""Step 3 of 3"" visible)",,,,,,,,,,,,,,,,
 CF_05,"[P0] Step 3 Complete: verify ""You're all set!"" + click Done -> Pricing plans","- CF_04b passed
 - Đang ở Step 3 ""Complete""
 - RULE wait 30s: test đầu tiên của Step 3 phải waitForTimeout(30_000) để syncing progress chạy xong (note: progress bar transient, sau 30s có thể đã biến mất khi sync complete)",Module: Create feed (Facebook),"1. Verify đã sang Step 3 (text ""Step 3 of 3"" visible)
@@ -179,7 +179,7 @@ CF_05,"[P0] Step 3 Complete: verify ""You're all set!"" + click Done -> Pricing 
 6. Click button ""Done""","- Panel Step 3 hiển thị heading ""You're all set!"" + subtext syncing to Facebook
 - Button Done enabled
 - Click Done -> app điều hướng sang màn Pricing plans (URL chứa /pricing-v3)
-- Pricing hiện 4 plan cards: Free ($0/month), Basic ($19.99/month), Scale ($29.99/month - Most popular), Advanced ($49.99/month)",,,,,,,,,,,,,,,
+- Pricing hiện 4 plan cards: Free ($0/month), Basic ($19.99/month), Scale ($29.99/month - Most popular), Advanced ($49.99/month)",,,,,,,,,,,,,,,,
 CF_06,[P0] Từ Pricing quay về Facebook Sync và kiểm tra setting vừa tạo,"- CF_05 passed
 - Đang ở màn Pricing plans
 - Feed ""Facebook catalog 1"" đã được tạo qua wizard
@@ -201,19 +201,19 @@ CF_06,[P0] Từ Pricing quay về Facebook Sync và kiểm tra setting vừa t�
 - Table feeds có 1 row với Name = ""Facebook catalog 1""
 - Business ID visible trong cột Business data
 - Sync status = ""Synced""
-- Pagination ""1/1""",,,,,,,,,,,,,,,
+- Pagination ""1/1""",,,,,,,,,,,,,,,,
 CF_07,"[P0] Free plan limit: button ""+ Connect new account"" ở Facebook Sync disabled khi đã có 1 account","- CF_06 passed
 - Đang ở Facebook Sync page với 1 account đã connect
 - Rule project_free_plan_channel_limit: Free plan chỉ cho 1 account/channel",Module: Create feed (Facebook),"1. Quan sát panel trái ""Facebook accounts""
 2. Xác định button ""+ Connect new account""
 3. Kiểm tra state của button (assert toBeDisabled())","- Button ""+ Connect new account"" hiển thị nhưng BỊ DISABLED
-- Click vào button không trigger flow connect (no-op)",,,,,,,,,,,,,,,
+- Click vào button không trigger flow connect (no-op)",,,,,,,,,,,,,,,,
 CF_08,"[P0] Free plan limit: button ""Create new"" feed ở Facebook Sync disabled khi đã có 1 feed","- CF_06 passed
 - Đang ở Facebook Sync page với 1 feed đã tạo
 - Rule: Free plan chỉ cho 1 feed/channel",Module: Create feed (Facebook),"1. Quan sát panel phải ""Facebook / Meta Shopping feeds""
 2. Xác định button ""Create new"" ở góc phải header panel
 3. Kiểm tra state của button","- Button ""Create new"" hiển thị nhưng BỊ DISABLED
-- Không thể trigger flow tạo feed thứ 2 trên Free plan",,,,,,,,,,,,,,,
+- Không thể trigger flow tạo feed thứ 2 trên Free plan",,,,,,,,,,,,,,,,
 CF_09,"[P0] Free plan limit: GMC Sync channel - button ""+ Connect account"" disabled khi đã connect Facebook","- CF_06 passed
 - Đã connect channel Facebook, đang ở Free plan
 - Rule: Free plan chỉ cho 1 channel. Channel khác truy cập được qua sidebar nhưng button Connect disabled. Channel limit bind vào ACCOUNT (không phải feed)",Module: Create feed (Facebook),"1. Click menu ""GMC Sync"" trong sidebar (force click) hoặc fallback goto /sync-to-gmc-setting
@@ -225,7 +225,7 @@ CF_09,"[P0] Free plan limit: GMC Sync channel - button ""+ Connect account"" dis
 7. Verify panel phải empty state: illustration + text ""No account connected yet""","- Truy cập GMC Sync page thành công qua sidebar (channel KHÔNG bị ẩn)
 - Heading + subtitle GMC Sync đúng
 - Panel Google accounts: ""No account connected"" + button ""+ Connect account"" BỊ DISABLED
-- Panel phải hiển thị empty state ""No account connected yet""",,,,,,,,,,,,,,,
+- Panel phải hiển thị empty state ""No account connected yet""",,,,,,,,,,,,,,,,
 CF_10,"[P0] Free plan limit: MMC Sync channel - button ""Connect"" disabled ở wizard Step 1 of 5","- CF_06 passed
 - Đã connect channel Facebook, đang ở Free plan",Module: Create feed (Facebook),"1. Click menu ""MMC Sync"" trong sidebar (force click) hoặc fallback goto /sync-to-mmc-setting
 2. Đợi 10s page load
@@ -239,7 +239,7 @@ CF_10,"[P0] Free plan limit: MMC Sync channel - button ""Connect"" disabled ở 
 - Stepper đủ 5 bước, step 1 active, ""Step 1 of 5"" indicator đúng
 - Panel ""Connect your Microsoft account"" + ""No account connected""
 - Button ""Connect"" BỊ DISABLED
-- Button ""Next"" ở footer cũng BỊ DISABLED (vì chưa connect account)",,,,,,,,,,,,,,,
+- Button ""Next"" ở footer cũng BỊ DISABLED (vì chưa connect account)",,,,,,,,,,,,,,,,
 CF_10b,"[P0] Free plan limit: XML Feeds - button ""Create your feed now"" disabled khi FB đã connect","- CF_06 passed
 - Đã connect channel Facebook, đang ở Free plan
 - LƯU Ý UI: button ""Create your feed now"" có màu đen nhìn như enabled nhưng thực tế aria-disabled=""true"" + class Polaris-Button--disabled. Phải assert bằng toBeDisabled(), KHÔNG dựa màu.",Module: Create feed (Facebook),"1. Click menu ""XML Feeds"" trong sidebar (force click) hoặc fallback goto /product-feeds-v2
@@ -249,7 +249,7 @@ CF_10b,"[P0] Free plan limit: XML Feeds - button ""Create your feed now"" disabl
 5. Xác định button ""Create your feed now""
 6. Assert toBeDisabled() (không dựa màu)","- Heading ""XML Feeds"" + empty state hiển thị đúng
 - Button ""Create your feed now"" BỊ DISABLED (mặc dù có màu đen)
-- XML Feeds cũng bị áp channel limit như các sync channel khác",,,,,,,,,,,,,,,
+- XML Feeds cũng bị áp channel limit như các sync channel khác",,,,,,,,,,,,,,,,
 CF_11,"[P0] Xóa feed ""Facebook catalog 1"" -> empty state + button ""Create first feed"" enable","- CF_06 passed (feed ""Facebook catalog 1"" đã tạo)
 - Đang ở Free plan
 - Popup confirm delete render ở page scope (App Bridge), không trong iframe",Module: Create feed (Facebook),"1. Navigate về Facebook Sync (sidebar force click hoặc fallback goto /sync-to-fb-setting-v2)
@@ -264,7 +264,7 @@ CF_11,"[P0] Xóa feed ""Facebook catalog 1"" -> empty state + button ""Create fi
 - Click Delete -> popup đóng, sau ~5s feed row biến mất
 - UI chuyển sang empty state: illustration + heading ""No feeds created yet"" + subtext ""Create a feed to sync products from Shopify to Facebook catalog."" + button ""+ Create first feed"" (đen, enabled)
 - Button ""Create new"" cũ ở header biến mất (thay bằng ""Create first feed"")
-- User có thể tạo feed mới qua button ""Create first feed""",,,,,,,,,,,,,,,
+- User có thể tạo feed mới qua button ""Create first feed""",,,,,,,,,,,,,,,,
 CF_12,"[P0] Sau khi xóa feed: GMC Sync button ""+ Connect account"" VẪN DISABLED (FB account còn connect)","- CF_11 passed (feed FB đã xóa)
 - FB account ""Thao Anh"" VẪN còn connect (chỉ xóa feed, không disconnect account)
 - Rule: channel limit phụ thuộc ACCOUNT, KHÔNG phụ thuộc feed -> xóa feed không unlock channel khác",Module: Create feed (Facebook),"1. Navigate sang GMC Sync (sidebar force click hoặc fallback goto /sync-to-gmc-setting)
@@ -273,7 +273,7 @@ CF_12,"[P0] Sau khi xóa feed: GMC Sync button ""+ Connect account"" VẪN DISAB
 4. Xác định button ""+ Connect account""
 5. Assert toBeDisabled()","- GMC Sync page load thành công
 - Button ""+ Connect account"" VẪN BỊ DISABLED
-- Confirm rule: phải DISCONNECT FB account mới unlock GMC channel, xóa feed không đủ",,,,,,,,,,,,,,,
+- Confirm rule: phải DISCONNECT FB account mới unlock GMC channel, xóa feed không đủ",,,,,,,,,,,,,,,,
 CF_13,"[P0] Sau khi xóa feed: MMC Sync button ""Connect"" VẪN DISABLED (FB account còn connect)","- CF_11 passed (feed FB đã xóa)
 - FB account VẪN còn connect
 - Rule: channel limit phụ thuộc ACCOUNT, KHÔNG phụ thuộc feed",Module: Create feed (Facebook),"1. Navigate sang MMC Sync (sidebar force click hoặc fallback goto /sync-to-mmc-setting)
@@ -282,7 +282,7 @@ CF_13,"[P0] Sau khi xóa feed: MMC Sync button ""Connect"" VẪN DISABLED (FB ac
 4. Xác định button ""Connect"" trong panel ""Connect your Microsoft account""
 5. Assert toBeDisabled()","- MMC Sync page load thành công
 - Button ""Connect"" VẪN BỊ DISABLED
-- Confirm rule: channel limit bind vào FB account còn connect, không phải feed",,,,,,,,,,,,,,,
+- Confirm rule: channel limit bind vào FB account còn connect, không phải feed",,,,,,,,,,,,,,,,
 CF_14,"[P0] Disconnect FB account trên Facebook Sync page -> panel chuyển về ""No account connected""","- CF_13 passed (feed đã xóa, FB account vẫn connect)
 - UI: account row có icon Disconnect (không text, chỉ icon) bên phải avatar + tên user
 - Có thể có confirmation dialog page scope (App Bridge) sau khi click",Module: Create feed (Facebook),"1. Navigate về Facebook Sync (sidebar force click hoặc fallback goto /sync-to-fb-setting-v2)
@@ -294,7 +294,7 @@ CF_14,"[P0] Disconnect FB account trên Facebook Sync page -> panel chuyển v�
 5. Nếu hiện confirmation dialog (page scope) ""Disconnect this account?"" hoặc ""Are you sure?"": click button Disconnect/Confirm/OK/Yes (.last())
 6. Chờ 5s cho UI update","- Account row ""Thao Anh"" biến mất
 - Panel ""Facebook accounts"" chuyển về state ""No account connected"" (hoặc không còn account)
-- Button Connect/Connect new account trên chính FB panel chuyển ENABLED",,,,,,,,,,,,,,,
+- Button Connect/Connect new account trên chính FB panel chuyển ENABLED",,,,,,,,,,,,,,,,
 CF_15,"[P0] Sau disconnect FB: GMC Sync button ""+ Connect account"" chuyển ENABLED","- CF_14 passed (FB account đã disconnect)
 - App vẫn ở Free plan
 - Rule: channel limit bind vào account -> disconnect account unlock các channel khác",Module: Create feed (Facebook),"1. Navigate sang GMC Sync (sidebar force click hoặc fallback goto /sync-to-gmc-setting)
@@ -303,7 +303,7 @@ CF_15,"[P0] Sau disconnect FB: GMC Sync button ""+ Connect account"" chuyển EN
 4. Xác định button ""+ Connect account""
 5. Assert toBeEnabled() (đối xứng CF_09/CF_12 trước đó disabled)","- GMC Sync page load thành công
 - Button ""+ Connect account"" CHUYỂN TỪ DISABLED -> ENABLED
-- Confirm rule: disconnect FB -> unlock GMC channel",,,,,,,,,,,,,,,
+- Confirm rule: disconnect FB -> unlock GMC channel",,,,,,,,,,,,,,,,
 CF_16,"[P0] Sau disconnect FB: MMC Sync button ""Connect"" chuyển ENABLED","- CF_14 passed
 - Rule: disconnect account unlock channel khác",Module: Create feed (Facebook),"1. Navigate sang MMC Sync (sidebar force click hoặc fallback goto /sync-to-mmc-setting)
 2. Đợi 10s page load
@@ -311,14 +311,14 @@ CF_16,"[P0] Sau disconnect FB: MMC Sync button ""Connect"" chuyển ENABLED","- 
 4. Xác định button ""Connect"" trong panel ""Connect your Microsoft account""
 5. Assert toBeEnabled() (đối xứng CF_10/CF_13 trước đó disabled)","- MMC Sync wizard load thành công
 - Button ""Connect"" CHUYỂN TỪ DISABLED -> ENABLED
-- Confirm rule: disconnect FB -> unlock MMC channel",,,,,,,,,,,,,,,
+- Confirm rule: disconnect FB -> unlock MMC channel",,,,,,,,,,,,,,,,
 CF_16b,"[P0] Sau disconnect FB: XML Feeds button ""Create your feed now"" chuyển ENABLED","- CF_14 passed
 - Rule: disconnect account unlock channel khác (kể cả XML Feeds)",Module: Create feed (Facebook),"1. Navigate sang XML Feeds (sidebar force click hoặc fallback goto /product-feeds-v2)
 2. Đợi 10s page load
 3. Verify heading ""XML Feeds""
 4. Xác định button ""Create your feed now""
 5. Assert toBeEnabled() (đối xứng CF_10b trước đó disabled)","- XML Feeds page load thành công
-- Button ""Create your feed now"" CHUYỂN TỪ DISABLED -> ENABLED",,,,,,,,,,,,,,,
+- Button ""Create your feed now"" CHUYỂN TỪ DISABLED -> ENABLED",,,,,,,,,,,,,,,,
 CG_00,[P0] Pre-setup module Create feed GMC: reset app để popup onboard sẵn sàng,"- User đã login Shopify admin của store dev-feed11
 - Trùng flow IA_00/CF_00. Module create-feed-gmc.spec.ts có CG_00 đảm nhiệm fresh install riêng cho GMC suite.
 - LƯU Ý: chạy CG_xx phải tách session với CF_xx hoặc reset state vì popup onboard chỉ hiện 1 lần/user",Module: Create feed (GMC),"1. Mở https://admin.shopify.com/store/dev-feed11/settings/apps?tab=installed
@@ -326,7 +326,7 @@ CG_00,[P0] Pre-setup module Create feed GMC: reset app để popup onboard sẵn
 3. Truy cập https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega và click ""Install app""
 4. Helper ensureFreshInstall() retry 3 lần nếu Shopify throttle","- App ở trạng thái vừa install
 - URL = https://admin.shopify.com/store/dev-feed11/apps/feed-data-by-omega
-- Popup onboard SẴN SÀNG hiện",,,,,,,,,,,,,,,
+- Popup onboard SẴN SÀNG hiện",,,,,,,,,,,,,,,,
 CG_01,[P0] Popup onboard -> Active Google - GMC -> Continue -> Connect Google account,"- CG_00 passed
 - Google account dùng cho test GMC ĐÃ login sẵn trong Chrome profile (giống FB)
 - KHÔNG được nhập email/password trong test (rule không leak credential)
@@ -345,7 +345,7 @@ FALLBACK: nếu popup không hiện trong 45s, navigate /sync-to-gmc-setting và
 - Trạng thái cuối: panel chuyển thành:
   + Avatar + tên Google user + ""Account connected"" + button ""Disconnect""
   + Xuất hiện 2 field required: ""Merchant center ID *"" (dropdown) + ""Data source name *"" (input), cùng placeholder ""Type name your data source""
-  + Vẫn ở Step 1 of 3, button Next disabled cho tới khi fill 2 field",,,,,,,,,,,,,,,
+  + Vẫn ở Step 1 of 3, button Next disabled cho tới khi fill 2 field",,,,,,,,,,,,,,,,
 CG_02,[P0] Verify UI onboard wizard Step 1 (Connect Google account) sau khi connect thành công,"- CG_01 passed
 - User đã connect Google account thành công qua onboard
 - Đang ở màn ""Get ready for Google Merchant Center"" Step 1 of 3
@@ -362,7 +362,7 @@ CG_02,[P0] Verify UI onboard wizard Step 1 (Connect Google account) sau khi conn
 - ""Step 1 of 3"" indicator hiển thị đúng
 - Panel hiển thị đủ: Avatar/tên Google + ""Account connected"" + button ""Disconnect""
 - 2 field ""Merchant center ID *"" và ""Data source name *"" visible + required
-- Button Next bị DISABLED",,,,,,,,,,,,,,,
+- Button Next bị DISABLED",,,,,,,,,,,,,,,,
 CG_03,[P0] Fill Step 1 (Merchant center ID + Data source name) và Next sang Step 2,"- CG_02 passed
 - Đang ở wizard Step 1 of 3, Google account đã connect
 - LƯU Ý DOM: cả 2 field cùng placeholder ""Type name your data source"" -> selector dùng .first() (Merchant ID) và .nth(1) (Data source name)",Module: Create feed (GMC),"1. Click dropdown ""Merchant center ID *"" (first input)
@@ -373,7 +373,7 @@ CG_03,[P0] Fill Step 1 (Merchant center ID + Data source name) và Next sang Ste
 3. Quan sát button Next chuyển từ disabled -> enabled
 4. Click button ""Next""","- Sau khi fill 2 field required, button Next enabled
 - Click Next -> sang Step 2 ""General setting"" (""Step 2 of 3"" visible)
-- Không có error validation",,,,,,,,,,,,,,,
+- Không có error validation",,,,,,,,,,,,,,,,
 CG_04a,"[P1] Step 2: Products from collections nhưng chưa chọn collection -> Next -> hiển thị error ""Please select collection""","- CG_03 passed
 - Đang ở Step 2 ""General setting"", default radio ""All products""
 - RULE wait 30s ở test đầu của Step 2",Module: Create feed (GMC),"1. Verify đã sang Step 2
@@ -383,7 +383,7 @@ CG_04a,"[P1] Step 2: Products from collections nhưng chưa chọn collection ->
 5. KHÔNG chọn collection nào
 6. Click button ""Next""","- Click Next khi 0 collection -> KHÔNG sang Step 3
 - Hiển thị error đỏ ""Please select collection"" dưới radio
-- Vẫn ở Step 2 of 3",,,,,,,,,,,,,,,
+- Vẫn ở Step 2 of 3",,,,,,,,,,,,,,,,
 CG_04b,[P0] Step 2: Products from collections -> Browse popup -> tick checkbox -> Add -> reset All products -> Next sang Step 3,"- CG_04a passed
 - RULE popup scope page (App Bridge)
 - RULE tick checkbox bằng .check()",Module: Create feed (GMC),"1. Click button ""Browse"" -> popup ""Add collections"" mở (page scope)
@@ -396,7 +396,7 @@ CG_04b,[P0] Step 2: Products from collections -> Browse popup -> tick checkbox -
 8. Click button ""Next"" -> sang Step 3","- Popup hiện đủ thành phần, Add disabled khi 0 selected
 - Tick checkbox -> Add enabled
 - Click Add -> popup đóng, error biến mất
-- Reset All products + Click Next -> sang Step 3 ""Complete"" (""Step 3 of 3"" visible)",,,,,,,,,,,,,,,
+- Reset All products + Click Next -> sang Step 3 ""Complete"" (""Step 3 of 3"" visible)",,,,,,,,,,,,,,,,
 CG_05,"[P0] Step 3 Complete: verify ""You're all set!"" + click Done -> Pricing plans","- CG_04b passed
 - Đang ở Step 3 ""Complete""
 - RULE wait 30s ở test đầu của Step 3
@@ -407,7 +407,7 @@ CG_05,"[P0] Step 3 Complete: verify ""You're all set!"" + click Done -> Pricing 
 5. Click button ""Done""","- Heading ""You're all set!"" visible
 - Subtext ""Your products are now syncing..."" (Facebook hoặc Google)
 - Click Done -> URL chứa /pricing-v3
-- Pricing hiện 4 plan cards: Free / Basic / Scale / Advanced",,,,,,,,,,,,,,,
+- Pricing hiện 4 plan cards: Free / Basic / Scale / Advanced",,,,,,,,,,,,,,,,
 CG_06,[P0] Từ Pricing quay về GMC Sync và kiểm tra setting vừa tạo,"- CG_05 passed
 - Đang ở Pricing
 - Feed ""GMC feed 1"" đã được tạo qua wizard
@@ -420,17 +420,17 @@ CG_06,[P0] Từ Pricing quay về GMC Sync và kiểm tra setting vừa tạo,"-
    5.2. Sync status: badge ""Synced""","- Heading + subtitle GMC Sync đúng
 - Panel Google accounts có account đã connected
 - Table feeds có 1 row Name = ""GMC feed 1""
-- Sync status = ""Synced""",,,,,,,,,,,,,,,
+- Sync status = ""Synced""",,,,,,,,,,,,,,,,
 CG_07,"[P0] Free plan limit: button ""+ Connect new account"" ở GMC Sync disabled khi đã có 1 account","- CG_06 passed
 - Đang ở GMC Sync với 1 Google account đã connect",Module: Create feed (GMC),"1. Quan sát panel trái ""Google accounts""
 2. Xác định button ""+ Connect new account""
-3. Assert toBeDisabled()","- Button ""+ Connect new account"" hiển thị nhưng BỊ DISABLED",,,,,,,,,,,,,,,
+3. Assert toBeDisabled()","- Button ""+ Connect new account"" hiển thị nhưng BỊ DISABLED",,,,,,,,,,,,,,,,
 CG_08,"[P0] Free plan limit: button ""Create new"" feed ở GMC Sync disabled khi đã có 1 feed","- CG_06 passed
 - Đang ở GMC Sync với 1 feed ""GMC feed 1""",Module: Create feed (GMC),"1. Quan sát panel phải feeds
 2. Xác định button ""Create new""
 3. Assert toBeDisabled()","- Button ""Create new"" BỊ DISABLED
-- Không thể tạo feed thứ 2",,,,,,,,,,,,,,,
-CG_09,"[P0] Free plan limit: Facebook Sync channel - button Connect disabled khi GMC đã connect","- CG_06 passed
+- Không thể tạo feed thứ 2",,,,,,,,,,,,,,,,
+CG_09,[P0] Free plan limit: Facebook Sync channel - button Connect disabled khi GMC đã connect,"- CG_06 passed
 - Đã connect channel Google, đang ở Free plan
 - Mirror CF_09 nhưng channel khóa là Facebook",Module: Create feed (GMC),"1. Click menu ""Facebook Sync"" trong sidebar (force) hoặc fallback goto /sync-to-fb-setting-v2
 2. Đợi 10s page load
@@ -438,7 +438,7 @@ CG_09,"[P0] Free plan limit: Facebook Sync channel - button Connect disabled khi
 4. Verify panel trái ""Facebook accounts"": ""No account connected""
 5. Xác định button ""+ Connect account"" (state chưa có account)
 6. Assert toBeDisabled()","- Truy cập Facebook Sync page thành công
-- Panel Facebook accounts: ""No account connected"" + button Connect BỊ DISABLED",,,,,,,,,,,,,,,
+- Panel Facebook accounts: ""No account connected"" + button Connect BỊ DISABLED",,,,,,,,,,,,,,,,
 CG_10,"[P0] Free plan limit: MMC Sync channel - button ""Connect"" disabled ở wizard Step 1 of 5","- CG_06 passed
 - Đã connect channel Google, đang ở Free plan",Module: Create feed (GMC),"1. Click menu ""MMC Sync"" trong sidebar (force) hoặc fallback goto /sync-to-mmc-setting
 2. Đợi 10s page load
@@ -446,7 +446,7 @@ CG_10,"[P0] Free plan limit: MMC Sync channel - button ""Connect"" disabled ở 
 4. Verify ""Step 1 of 5""
 5. Xác định button ""Connect""
 6. Assert toBeDisabled()","- MMC Sync wizard hiển thị, Step 1 of 5
-- Button ""Connect"" BỊ DISABLED",,,,,,,,,,,,,,,
+- Button ""Connect"" BỊ DISABLED",,,,,,,,,,,,,,,,
 CG_10b,"[P0] Free plan limit: XML Feeds - button ""Create your feed now"" disabled khi GMC đã connect","- CG_06 passed
 - Đã connect channel Google, đang ở Free plan
 - LƯU Ý UI: button ""Create your feed now"" có màu đen nhưng aria-disabled",Module: Create feed (GMC),"1. Click menu ""XML Feeds"" trong sidebar (force) hoặc fallback goto /product-feeds-v2
@@ -454,7 +454,7 @@ CG_10b,"[P0] Free plan limit: XML Feeds - button ""Create your feed now"" disabl
 3. Verify heading ""XML Feeds""
 4. Xác định button ""Create your feed now""
 5. Assert toBeDisabled() (không dựa màu)","- Heading ""XML Feeds"" hiển thị
-- Button ""Create your feed now"" BỊ DISABLED",,,,,,,,,,,,,,,
+- Button ""Create your feed now"" BỊ DISABLED",,,,,,,,,,,,,,,,
 CG_11,"[P0] Xóa feed ""GMC feed 1"" -> empty state + button ""Create first feed"" enable","- CG_06 passed (feed ""GMC feed 1"" đã tạo)
 - Popup confirm delete render ở page scope (App Bridge)",Module: Create feed (GMC),"1. Navigate về GMC Sync
 2. Verify đang ở GMC Sync page với row feed ""GMC feed 1""
@@ -464,8 +464,8 @@ CG_11,"[P0] Xóa feed ""GMC feed 1"" -> empty state + button ""Create first feed
 6. Click button ""Delete"" (.last())
 7. Chờ 5s cho UI update sang empty state","- Popup ""Delete this feed?"" mở
 - Click Delete -> popup đóng, sau ~5s feed row biến mất
-- UI chuyển sang empty state: heading ""No feeds created yet"" + button ""+ Create first feed"" (enabled)",,,,,,,,,,,,,,,
-CG_12,"[P0] Sau khi xóa feed: Facebook Sync button Connect VẪN DISABLED (Google account còn connect)","- CG_11 passed (feed GMC đã xóa)
+- UI chuyển sang empty state: heading ""No feeds created yet"" + button ""+ Create first feed"" (enabled)",,,,,,,,,,,,,,,,
+CG_12,[P0] Sau khi xóa feed: Facebook Sync button Connect VẪN DISABLED (Google account còn connect),"- CG_11 passed (feed GMC đã xóa)
 - Google account VẪN còn connect
 - Rule: channel limit phụ thuộc ACCOUNT",Module: Create feed (GMC),"1. Navigate sang Facebook Sync (force click hoặc fallback goto)
 2. Đợi 10s
@@ -473,8 +473,8 @@ CG_12,"[P0] Sau khi xóa feed: Facebook Sync button Connect VẪN DISABLED (Goog
 4. Xác định button ""+ Connect account""
 5. Assert toBeDisabled()","- FB Sync page load thành công
 - Button Connect VẪN BỊ DISABLED
-- Confirm rule: phải DISCONNECT Google account mới unlock FB channel",,,,,,,,,,,,,,,
-CG_13,"[P0] Sau khi xóa feed: MMC Sync button Connect VẪN DISABLED (Google account còn connect)","- CG_11 passed (feed GMC đã xóa)
+- Confirm rule: phải DISCONNECT Google account mới unlock FB channel",,,,,,,,,,,,,,,,
+CG_13,[P0] Sau khi xóa feed: MMC Sync button Connect VẪN DISABLED (Google account còn connect),"- CG_11 passed (feed GMC đã xóa)
 - Google account VẪN còn connect
 - Rule: channel limit phụ thuộc ACCOUNT",Module: Create feed (GMC),"1. Navigate sang MMC Sync (force click hoặc fallback goto)
 2. Đợi 10s
@@ -482,7 +482,7 @@ CG_13,"[P0] Sau khi xóa feed: MMC Sync button Connect VẪN DISABLED (Google ac
 4. Xác định button ""Connect""
 5. Assert toBeDisabled()","- MMC Sync wizard load
 - Button Connect VẪN BỊ DISABLED
-- Confirm rule: channel limit bind vào Google account còn connect, không phải feed",,,,,,,,,,,,,,,
+- Confirm rule: channel limit bind vào Google account còn connect, không phải feed",,,,,,,,,,,,,,,,
 CG_14,"[P0] Disconnect Google account trên GMC Sync page -> panel chuyển về ""No account connected""","- CG_13 passed (feed đã xóa, Google account vẫn connect)
 - UI: account row có icon Disconnect (không text, chỉ icon) bên phải avatar + tên user - mirror FB
 - Có thể có confirmation dialog page scope (App Bridge)",Module: Create feed (GMC),"1. Navigate về GMC Sync (sidebar force click hoặc fallback goto /sync-to-gmc-setting)
@@ -494,8 +494,8 @@ CG_14,"[P0] Disconnect Google account trên GMC Sync page -> panel chuyển về
 4. Click button Disconnect
 5. Nếu hiện confirmation dialog (page scope): click button Disconnect/Confirm/OK/Yes
 6. Chờ 5s cho UI update","- Panel ""Google accounts"" chuyển về state ""No account connected""
-- Button Connect/Connect new account trên chính GMC panel chuyển ENABLED",,,,,,,,,,,,,,,
-CG_15,"[P0] Sau disconnect Google: Facebook Sync button Connect chuyển ENABLED","- CG_14 passed (Google account đã disconnect)
+- Button Connect/Connect new account trên chính GMC panel chuyển ENABLED",,,,,,,,,,,,,,,,
+CG_15,[P0] Sau disconnect Google: Facebook Sync button Connect chuyển ENABLED,"- CG_14 passed (Google account đã disconnect)
 - App vẫn ở Free plan
 - Rule: disconnect account unlock channel khác",Module: Create feed (GMC),"1. Navigate sang Facebook Sync (sidebar force click hoặc fallback goto /sync-to-fb-setting-v2)
 2. Đợi 10s
@@ -503,18 +503,18 @@ CG_15,"[P0] Sau disconnect Google: Facebook Sync button Connect chuyển ENABLED
 4. Xác định button Connect (Connect account hoặc Connect new account)
 5. Assert toBeEnabled() (đối xứng CG_09/CG_12 trước đó disabled)","- FB Sync page load thành công
 - Button Connect CHUYỂN TỪ DISABLED -> ENABLED
-- Confirm rule: disconnect Google -> unlock FB channel",,,,,,,,,,,,,,,
-CG_16,"[P0] Sau disconnect Google: MMC Sync button Connect chuyển ENABLED","- CG_14 passed
+- Confirm rule: disconnect Google -> unlock FB channel",,,,,,,,,,,,,,,,
+CG_16,[P0] Sau disconnect Google: MMC Sync button Connect chuyển ENABLED,"- CG_14 passed
 - Rule: disconnect account unlock channel khác",Module: Create feed (GMC),"1. Navigate sang MMC Sync (sidebar force click hoặc fallback goto /sync-to-mmc-setting)
 2. Đợi 10s
 3. Verify heading ""Get ready for Bing/Microsoft Shopping""
 4. Xác định button ""Connect"" trong panel ""Connect your Microsoft account""
 5. Assert toBeEnabled() (đối xứng CG_10/CG_13 trước đó disabled)","- MMC Sync wizard load thành công
-- Button Connect CHUYỂN TỪ DISABLED -> ENABLED",,,,,,,,,,,,,,,
+- Button Connect CHUYỂN TỪ DISABLED -> ENABLED",,,,,,,,,,,,,,,,
 CG_16b,"[P0] Sau disconnect Google: XML Feeds button ""Create your feed now"" chuyển ENABLED","- CG_14 passed
 - Rule: disconnect account unlock channel khác",Module: Create feed (GMC),"1. Navigate sang XML Feeds (sidebar force click hoặc fallback goto /product-feeds-v2)
 2. Đợi 10s
 3. Verify heading ""XML Feeds""
 4. Xác định button ""Create your feed now""
 5. Assert toBeEnabled() (đối xứng CG_10b trước đó disabled)","- XML Feeds page load thành công
-- Button ""Create your feed now"" CHUYỂN TỪ DISABLED -> ENABLED",,,,,,,,,,,,,,,
+- Button ""Create your feed now"" CHUYỂN TỪ DISABLED -> ENABLED",,,,,,,,,,,,,,,,

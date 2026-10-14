@@ -11,7 +11,9 @@ export default defineConfig({
   workers: 1,
   fullyParallel: false,
   // HTML report: test fail có kèm screenshot + trace (mở bằng: npx playwright show-report)
-  reporter: [['list'], ['html', { open: 'never' }]],
+  // json để scripts/make-report.js đối chiếu kết quả với file test case
+  reporter: [['list'], ['html', { open: 'never' }],
+    ['json', { outputFile: 'test-results/results.json' }]],
   projects: [
     {
       name: 'setup',

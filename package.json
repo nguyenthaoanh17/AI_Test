@@ -8,7 +8,8 @@
     "fb-login": "node scripts/fb-login.js",
     "gg-login": "node scripts/gg-login.js",
     "reinstall": "node scripts/reinstall.js",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:notify": "bash scripts/test-notify.sh"
   },
   "keywords": [],
   "author": "",
