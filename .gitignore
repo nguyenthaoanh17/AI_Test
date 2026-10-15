@@ -10,3 +10,4 @@ user.json
 .auth-profile/
 .env
 .env.local
+/test-reports/
